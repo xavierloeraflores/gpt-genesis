@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Sandbox from "npm/components/sandbox/sandbox";
 
 import { api } from "npm/utils/api";
 
@@ -14,7 +15,9 @@ const Home: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]"></main>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <Sandbox />
+      </main>
     </>
   );
 };
