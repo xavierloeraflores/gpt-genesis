@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-white">
+      <main className="bg--gray-50 flex min-h-screen flex-col items-center justify-center">
         <span>Beginning of Sandbox</span>
         <Sandbox />
       </main>
