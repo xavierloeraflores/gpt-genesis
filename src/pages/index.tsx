@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create T3 App</title>
+        <title>GPT Genesis</title>
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
