@@ -1,4 +1,10 @@
+import SearchBar from "../searchbar/searchbar";
+
 const Sandbox: React.FC = () => {
-  return <div>GPT Genesis Sandbox</div>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 };
 export default Sandbox;
