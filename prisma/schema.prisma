@@ -16,7 +16,7 @@ model Article {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     title     String
-    content   String
+    content   String @db.Text
     images    ArticleImages[]
     facts     ArticleFactsTable[]
     questions ArticleQuestions[]
