@@ -1,12 +1,10 @@
 import { useState } from "react";
 
-import type { SearchResultProps } from "../searchresult/searchresult";
-
-export interface searchBarProps {
+export interface SearchBarProps {
   setParentSearchText: (text: string) => void;
 }
 
-const SearchBar: React.FC<searchBarProps> = ({ setParentSearchText }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ setParentSearchText }) => {
   const [searchText, setSearchText] = useState("");
 
   return (

@@ -1,16 +1,13 @@
 import SearchResult from "../searchresult/searchresult";
-import { useState, useEffect } from "react";
-import type { SearchResultProps } from "../searchresult/searchresult";
 import { api } from "npm/utils/api";
 
-export interface searchResultListProps {
+export interface SearchResultListProps {
   searchText: string;
 }
 
-const SearchResultList: React.FC<searchResultListProps> = ({ searchText }) => {
+const SearchResultList: React.FC<SearchResultListProps> = ({ searchText }) => {
   const searchResults = api.articles.search.useQuery({ text: searchText }).data
     ?.searchResults;
-  console.log("setting");
 
   return (
     <div>

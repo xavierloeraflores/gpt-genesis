@@ -1,7 +1,4 @@
 import SearchBar from "npm/components/searchbar/searchbar";
-import SearchResult from "npm/components/searchresult/searchresult";
-
-import { api } from "npm/utils/api";
 import { useState } from "react";
 
 import SearchResultList from "../searchresultlist/searchresultlist";
