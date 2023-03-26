@@ -21,7 +21,7 @@ export const articleRouter = createTRPCRouter({
           searchResults: [],
         };
       }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
       const searchResults = ctx.prisma.article.findMany({
         select: {
           id: true,
