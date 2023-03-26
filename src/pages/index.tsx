@@ -7,7 +7,7 @@ import SearchBar from "npm/components/searchbar/searchbar";
 import { api } from "npm/utils/api";
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (
     <>
