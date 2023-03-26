@@ -1,8 +1,6 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "npm/server/api/trpc";
-import { Article } from "@prisma/client";
-import { Observable } from "@trpc/server/observable";
 
 export const articleRouter = createTRPCRouter({
   generate: publicProcedure
@@ -29,14 +27,22 @@ export const articleRouter = createTRPCRouter({
         },
         where: {
           title: {
-            contains: "hello",
+            contains: input.text,
           },
         },
       });
-
       return {
         searchResults,
       };
+    }),
+  getArticle: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ input, ctx }) => {
+      return ctx.prisma.article.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
