@@ -10,8 +10,18 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
+model Article {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    title     String
+    content   String
+    images    ArticleImages[]
+}
+
+model ArticleImages {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    articleId String
+    image     String
+    article   Article  @relation(fields: [articleId], references: [id])
 }
