@@ -1,50 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import Sandbox from "npm/components/sandbox/sandbox";
-import SearchBar from "npm/components/searchbar/searchbar";
-import SearchResult from "npm/components/searchresult/searchresult";
-
-import { api } from "npm/utils/api";
-import type { SearchResultProps } from "npm/components/searchresult/searchresult";
-import type { searchBarProps } from "npm/components/searchbar/searchbar";
-import { useCallback, useState } from "react";
 import Search from "npm/components/search/search";
 
-export const useSearch = (
-  searchText: string,
-  setSearchResults: (results: Array<SearchResultProps>) => void
-) => {
-  console.log("searching");
-  const results = api.articles.search.useQuery({ text: searchText }).data
-    ?.searchResults;
-  console.log("setting");
-  setSearchResults(results as Array<SearchResultProps>);
-};
-
 const Home: NextPage = () => {
-  const [searchResults, setSearchResults] = useState(Array<SearchResultProps>);
-
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  // const results = api.articles.search.useQuery({ text: "hello" }).data
-  //   ?.searchResults;
-
-  // const useSearch = useCallback((searchText: string) => {
-  //   console.log("searching");
-  //   const results = api.articles.search.useQuery({ text: searchText }).data
-  //     ?.searchResults;
-  //   console.log("setting");
-  //   setSearchResults(results as Array<SearchResultProps>);
-  // }, []);
-
-  // const search = (searchText: string) => {
-  //   console.log("searching");
-  //   const results = api.articles.search.useQuery({ text: searchText }).data
-  //     ?.searchResults;
-  //   console.log("setting");
-  //   setSearchResults(results as Array<SearchResultProps>);
-  // };
-
   return (
     <>
       <Head>
