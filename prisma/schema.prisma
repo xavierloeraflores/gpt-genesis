@@ -13,9 +13,13 @@ datasource db {
 model Article {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
     title     String
     content   String
     images    ArticleImages[]
+    facts     ArticleFactsTable[]
+    questions ArticleQuestions[]
+    links     ArticleLinks[]
 }
 
 model ArticleImages {
@@ -24,4 +28,39 @@ model ArticleImages {
     articleId String
     image     String
     article   Article  @relation(fields: [articleId], references: [id])
+}
+
+model ArticleFactsTable {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    articleId String
+    article   Article  @relation(fields: [articleId], references: [id])
+    facts     ArticleFacts[]
+}
+
+model ArticleFacts {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    articleFactsTableId String
+    articleFactsTable   ArticleFactsTable  @relation(fields: [articleFactsTableId], references: [id])
+    factTitle String
+    factContent String
+}
+
+model ArticleQuestions {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    articleId String
+    article   Article  @relation(fields: [articleId], references: [id])
+    question  String
+    answer    String
+}
+
+model ArticleLinks {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    articleId String
+    article   Article  @relation(fields: [articleId], references: [id])
+    linkTitle String
+    linkUrl   String
 }
