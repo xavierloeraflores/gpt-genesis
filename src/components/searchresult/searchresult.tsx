@@ -1,17 +1,18 @@
 import Link from "next/link";
 
 export interface SearchResultProps {
-  result: string;
-  link: string;
+  title: string;
+  id: string;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ result, link }) => {
+const SearchResult: React.FC<SearchResultProps> = ({ title, id }) => {
+  console.log("hello", id, title);
   return (
     <Link
-      href={link}
+      href={`/${id}`}
       className="my-1 flex w-full w-full rounded-sm border bg-white p-1"
     >
-      <span className="">{result}</span>
+      <span className="">{title}</span>
     </Link>
   );
 };
