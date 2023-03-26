@@ -18,7 +18,6 @@ const Home: NextPage = () => {
       </header>
       <main className="flex min-h-screen flex-col items-center bg-gray-100">
         <Search />
-        <span>Beginning of Sandbox</span>
         <Sandbox />
       </main>
     </>
