@@ -6,8 +6,6 @@ export interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ setParentSearchText }) => {
-  const [searchText, setSearchText] = useState("");
-
   return (
     <div className="flex w-full rounded-md">
       <input
@@ -15,7 +13,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ setParentSearchText }) => {
         placeholder="Search 🔎"
         className="grow rounded-md border bg-transparent bg-white p-1 outline-none"
         onChange={(e) => {
-          // setSearchText(e.target.value);
           setParentSearchText(e.target.value);
         }}
       />
