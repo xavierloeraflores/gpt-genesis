@@ -3,6 +3,7 @@ name: Prisma DB Push to Development Database
 on:
   push:
     branches: [development]
+    paths: ["prisma/**"]
 
 jobs:
   db-push:
