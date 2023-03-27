@@ -1,14 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import Sandbox from "npm/components/sandbox/sandbox";
-import SearchBar from "npm/components/searchbar/searchbar";
-
-import { api } from "npm/utils/api";
+import Search from "npm/components/search/search";
 
 const Home: NextPage = () => {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -22,8 +17,7 @@ const Home: NextPage = () => {
         <h3 className="text-center">Created by Xavier Loera Flores</h3>
       </header>
       <main className="flex min-h-screen flex-col items-center bg-gray-100">
-        <SearchBar />
-        <span>Beginning of Sandbox</span>
+        <Search />
         <Sandbox />
       </main>
     </>

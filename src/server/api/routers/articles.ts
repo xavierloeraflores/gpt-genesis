@@ -1,8 +1,6 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "npm/server/api/trpc";
-import { Article } from "@prisma/client";
-import { Observable } from "@trpc/server/observable";
 
 export const articleRouter = createTRPCRouter({
   generate: publicProcedure
@@ -15,21 +13,21 @@ export const articleRouter = createTRPCRouter({
 
   search: publicProcedure
     .input(z.object({ text: z.string() }))
-    .query(({ input, ctx }) => {
-      if (!input.text || typeof input.text) {
+    .query(async ({ input, ctx }) => {
+      if (!input.text || typeof input.text !== "string") {
         return {
           searchResults: [],
         };
       }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const searchResults = ctx.prisma.article.findMany({
+
+      const searchResults = await ctx.prisma.article.findMany({
         select: {
           id: true,
           title: true,
         },
         where: {
           title: {
-            contains: "hello",
+            contains: input.text,
           },
         },
       });
@@ -37,6 +35,15 @@ export const articleRouter = createTRPCRouter({
       return {
         searchResults,
       };
+    }),
+  getArticle: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      return ctx.prisma.article.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
