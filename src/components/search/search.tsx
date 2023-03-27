@@ -7,10 +7,12 @@ import Button from "../button/button";
 
 const Search: React.FC = () => {
   const [searchText, setSearchText] = useState("");
+  const [openaiText, setOpenaiText] = useState("");
   const { mutate, isLoading } = api.articles.generate.useMutation({
     onSuccess: (data) => {
       console.log("Success!");
       console.log({ data });
+      setOpenaiText(data.response.content);
     },
     onError: (error) => {
       console.log("Error!");
@@ -22,6 +24,7 @@ const Search: React.FC = () => {
       <SearchBar setParentSearchText={setSearchText} />
       <Button text="Generate!" onClick={() => mutate({ text: searchText })} />
       <SearchResultList searchText={searchText} />
+      <span>{openaiText}</span>
     </div>
   );
 };
