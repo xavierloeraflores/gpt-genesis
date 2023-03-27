@@ -9,19 +9,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ setParentSearchText }) => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <div className="flex w-full rounded-md ">
+    <div className="flex w-full rounded-md">
       <input
         type="text"
-        placeholder="Search"
-        className="grow rounded-md border bg-transparent bg-white outline-none"
+        placeholder="Search 🔎"
+        className="grow rounded-md border bg-transparent bg-white p-1 outline-none"
         onChange={(e) => {
-          setSearchText(e.target.value);
-          console.log(searchText);
+          // setSearchText(e.target.value);
+          setParentSearchText(e.target.value);
         }}
-      />
-      <Button
-        text="Search 🔎"
-        onClick={() => setParentSearchText(searchText)}
       />
       <Button text="Generate" onClick={() => console.log("generating")} />
     </div>
