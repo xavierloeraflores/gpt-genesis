@@ -19,7 +19,7 @@ export const articleRouter = createTRPCRouter({
         logprobs: null,
         stop: null,
       });
-
+      console.log("received from openai", openaiResponse);
       console.log("Writing to database", openaiResponse.data?.choices[0]?.text);
 
       const response = await ctx.prisma.article.create({
@@ -54,6 +54,7 @@ export const articleRouter = createTRPCRouter({
           },
         },
       });
+      console.log("searchResults", searchResults);
 
       return {
         searchResults,
