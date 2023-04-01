@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { slate } = require("@radix-ui/colors");
+const { slate, blackA } = require("@radix-ui/colors");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -8,6 +8,7 @@ const config = {
     extend: {
       colors: {
         ...slate,
+        ...blackA,
       },
     },
   },
