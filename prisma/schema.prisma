@@ -13,8 +13,8 @@ model Article {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     title     String
-    content   String @db.Text @default("")
-    generated Int    @default(0)
+    content   String?  @db.Text 
+    generated Int      @default(0)
     images    ArticleImages[]
     facts     ArticleFactsTable[]
     questions ArticleQuestions[]
