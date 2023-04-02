@@ -31,11 +31,10 @@ const Wiki: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Wiki</h1>
-      <header>
-        <h1>GPT Genesis</h1>
-        <h2>Wikis by ChatGPT</h2>
-        <h3>Created by Xavier Loera Flores</h3>
+      <header className="flex flex-col items-center justify-center bg-gray-100">
+        <h1 className="text-6xl font-bold">GPT Genesis</h1>
+        <h2 className="text-center text-2xl font-bold">Wikis by ChatGPT</h2>
+        <h3 className="text-center">Created by Xavier Loera Flores</h3>
       </header>
       <main>
         <h1>Wiki</h1>
