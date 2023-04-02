@@ -4,6 +4,20 @@ import { createTRPCRouter, publicProcedure } from "npm/server/api/trpc";
 import openai, { CompletionResponse } from "npm/server/openai";
 
 export const articleRouter = createTRPCRouter({
+  createArticle: publicProcedure
+    .input(z.object({ title: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const response = await ctx.prisma.article.create({
+        data: {
+          title: input.title,
+        },
+      });
+
+      return {
+        response,
+      };
+    }),
+
   generate: publicProcedure
     .input(z.object({ text: z.string() }))
     .mutation(async ({ ctx, input }) => {

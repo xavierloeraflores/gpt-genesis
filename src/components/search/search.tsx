@@ -1,18 +1,19 @@
 import SearchBar from "npm/components/searchbar/searchbar";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import { api } from "npm/utils/api";
 import SearchResultList from "../searchresultlist/searchresultlist";
 import Button from "../button/button";
 
 const Search: React.FC = () => {
+  const router = useRouter();
   const [searchText, setSearchText] = useState("");
-  const [openaiText, setOpenaiText] = useState("");
-  const { mutate, isLoading } = api.articles.generate.useMutation({
+  const { mutate, isLoading } = api.articles.createArticle.useMutation({
     onSuccess: (data) => {
       console.log("Success!");
       console.log({ data });
-      setOpenaiText(data.response.content);
+      void router.push(`/${data.response.id}`);
     },
     onError: (error) => {
       console.log("Error!");
@@ -22,9 +23,8 @@ const Search: React.FC = () => {
   return (
     <div>
       <SearchBar setParentSearchText={setSearchText} />
-      <Button text="Generate!" onClick={() => mutate({ text: searchText })} />
+      <Button text="Generate!" onClick={() => mutate({ title: searchText })} />
       <SearchResultList searchText={searchText} />
-      <span>{openaiText}</span>
     </div>
   );
 };
