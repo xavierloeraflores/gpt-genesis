@@ -20,6 +20,7 @@ export const articleRouter = createTRPCRouter({
   generate: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
+      console.log(`generating from openai for article ${input.id}`);
       const openaiResponse = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: `You are an AI that produces articles about different topics similar to Wikipedia articles. Generate an article about the following topic:${input.text}.`,
@@ -31,9 +32,14 @@ export const articleRouter = createTRPCRouter({
         logprobs: null,
         stop: null,
       });
-      console.log("received from openai", openaiResponse);
-      console.log("Writing to database", openaiResponse.data?.choices[0]?.text);
-      const response = await ctx.prisma.article.update({
+
+      // const _openaiImageResponse = openai.createImage({
+      //   prompt: "",
+      //   n: 1,
+      //   size: "512x512",
+      // });
+
+      const response = ctx.prisma.article.update({
         where: {
           id: input.id,
         },
@@ -106,7 +112,7 @@ export const articleRouter = createTRPCRouter({
     }),
   getArticleById: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query(async ({ input, ctx }) => {
+    .query(({ input, ctx }) => {
       return ctx.prisma.article.findUnique({
         where: {
           id: input.id,

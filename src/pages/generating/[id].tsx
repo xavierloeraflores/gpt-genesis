@@ -2,6 +2,7 @@ import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import { api } from "npm/utils/api";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 interface Article {
   id: string;
@@ -14,15 +15,27 @@ interface ArticleProps {
   article: Article;
 }
 
-const Wiki: NextPage = () => {
+const Generating: NextPage = () => {
+  console.log("Generating page");
   const router = useRouter();
   const id: string = router.query.id as string;
-  const response = api.articles.getArticleById.useQuery({ id });
 
-  if (!response || response.error || !response.data) {
-    return <div>Error</div>;
-  }
-  const article = response?.data;
+  const { mutate } = api.articles.generate.useMutation({
+    onSuccess: async (data) => {
+      console.log("Success!");
+      console.log({ data });
+      void router.push(`/wiki/${id}`);
+    },
+    onError: (error) => {
+      console.log("Error!");
+      console.log({ error });
+    },
+  });
+
+  useEffect(() => {
+    console.log("Generating page useEffect");
+    mutate({ id: id });
+  }, []);
 
   return (
     <>
@@ -38,11 +51,10 @@ const Wiki: NextPage = () => {
         <h3>Created by Xavier Loera Flores</h3>
       </header>
       <main>
-        <h1>Wiki</h1>
-        <h2>{article.title}</h2>
+        <h1>Generating</h1>
       </main>
     </>
   );
 };
 
-export default Wiki;
+export default Generating;
