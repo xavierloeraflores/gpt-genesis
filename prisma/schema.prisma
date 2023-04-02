@@ -24,8 +24,8 @@ model Article {
 model ArticleImages {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    articleId String
-    image     String
+    articleId String   
+    image     String   @db.Text
     article   Article  @relation(fields: [articleId], references: [id])
 }
 

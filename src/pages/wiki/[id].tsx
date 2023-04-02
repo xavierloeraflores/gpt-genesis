@@ -17,7 +17,7 @@ interface ArticleProps {
 const Wiki: NextPage = () => {
   const router = useRouter();
   const id: string = router.query.id as string;
-  const response = api.articles.getArticleById.useQuery({ id });
+  const response = api.articles.getArticleByIdWithContent.useQuery({ id });
 
   if (!response || response.error || !response.data) {
     return <div>Error</div>;
@@ -40,6 +40,10 @@ const Wiki: NextPage = () => {
       <main>
         <h1>Wiki</h1>
         <h2>{article.title}</h2>
+        <p>{article.content}</p>
+        {article.images && article.images[0] && (
+          <img src={article.images[0].image} alt={article.title} />
+        )}
       </main>
     </>
   );
