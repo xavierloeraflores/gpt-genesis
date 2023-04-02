@@ -9,11 +9,11 @@ import Button from "../button/button";
 const Search: React.FC = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
-  const { mutate, isLoading } = api.articles.createArticle.useMutation({
+  const { mutate } = api.articles.createArticle.useMutation({
     onSuccess: (data) => {
       console.log("Success!");
       console.log({ data });
-      void router.push(`/${data.response.id}`);
+      void router.push(`/wiki/${data.response.id}`);
     },
     onError: (error) => {
       console.log("Error!");
