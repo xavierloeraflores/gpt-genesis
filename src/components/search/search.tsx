@@ -9,10 +9,22 @@ import Button from "../button/button";
 const Search: React.FC = () => {
   const router = useRouter();
   const [searchText, setSearchText] = useState("");
+  const { mutate: _generate } = api.articles.generate.useMutation({
+    onSuccess: (data) => {
+      console.log("Success!");
+      console.log({ data });
+    },
+    onError: (error) => {
+      console.log("Error!");
+      console.log({ error });
+    },
+  });
+
   const { mutate } = api.articles.createArticle.useMutation({
     onSuccess: (data) => {
       console.log("Success!");
       console.log({ data });
+      _generate({ id: data.response.id });
       void router.push(`/wiki/${data.response.id}`);
     },
     onError: (error) => {
@@ -20,6 +32,7 @@ const Search: React.FC = () => {
       console.log({ error });
     },
   });
+
   return (
     <div>
       <SearchBar setParentSearchText={setSearchText} />
