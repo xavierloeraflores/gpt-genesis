@@ -1,18 +1,8 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage } from "next";
+import Image from "next/image";
 import Head from "next/head";
 import { api } from "npm/utils/api";
 import { useRouter } from "next/router";
-
-interface Article {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-}
-interface ArticleProps {
-  article: Article;
-}
 
 const Wiki: NextPage = () => {
   const router = useRouter();
@@ -41,7 +31,12 @@ const Wiki: NextPage = () => {
         <h2>{article.title}</h2>
         <p>{article.content}</p>
         {article.images && article.images[0] && (
-          <img src={article.images[0].image} alt={article.title} />
+          <Image
+            src={article.images[0].image}
+            alt={article.title}
+            width={300}
+            height={300}
+          />
         )}
       </main>
     </>
