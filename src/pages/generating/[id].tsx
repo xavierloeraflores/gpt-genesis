@@ -1,19 +1,8 @@
-import { NextPage, GetServerSideProps } from "next";
+import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "npm/utils/api";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
-interface Article {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-}
-interface ArticleProps {
-  article: Article;
-}
 
 const Generating: NextPage = () => {
   console.log("Generating page");
@@ -21,9 +10,8 @@ const Generating: NextPage = () => {
   const id: string = router.query.id as string;
 
   const { mutate } = api.articles.generate.useMutation({
-    onSuccess: async (data) => {
-      console.log("Success!");
-      console.log({ data });
+    onSuccess: (data) => {
+      console.log("Successful Page Generation!");
       void router.push(`/wiki/${id}`);
     },
     onError: (error) => {

@@ -31,7 +31,9 @@ export const articleRouter = createTRPCRouter({
 
       const openaiResponse = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `You are an AI that produces articles about different topics similar to Wikipedia articles. Generate an article about the following topic:${input.text}.`,
+        prompt: `You are an AI that produces articles about different topics similar to Wikipedia articles. Generate an article about the following topic:${
+          article?.title || "error"
+        }.`,
         max_tokens: 1024,
         temperature: 0.7,
         top_p: 0.9,
