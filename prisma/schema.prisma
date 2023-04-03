@@ -13,7 +13,8 @@ model Article {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     title     String
-    content   String @db.Text
+    content   String?  @db.Text 
+    generated Int      @default(0)
     images    ArticleImages[]
     facts     ArticleFactsTable[]
     questions ArticleQuestions[]
@@ -23,8 +24,8 @@ model Article {
 model ArticleImages {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    articleId String
-    image     String
+    articleId String   
+    image     String   @db.Text
     article   Article  @relation(fields: [articleId], references: [id])
 }
 
