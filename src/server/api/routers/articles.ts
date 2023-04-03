@@ -27,9 +27,13 @@ export const articleRouter = createTRPCRouter({
           id: input.id,
         },
       });
-      console.log("Success on retriving article from database");
+      console.log(
+        `Success on retriving article ${
+          article?.title || "error"
+        }  from database`
+      );
 
-      const openaiResponse = await openai.createCompletion({
+      const _openaiResponse = openai.createCompletion({
         model: "text-davinci-003",
         prompt: `You are an AI that produces articles about different topics similar to Wikipedia articles. Generate an article about the following topic:${
           article?.title || "error"
@@ -44,19 +48,23 @@ export const articleRouter = createTRPCRouter({
       });
       console.log("Success on retriving article from openai");
 
-      const openaiImageResponse = await openai.createImage({
+      const _openaiImageResponse = openai.createImage({
         prompt: `Create an image that that would be used in an article about the following topic:${
           article?.title || "error"
         }.`,
         n: 1,
         size: "512x512",
       });
-      console.log(
-        "Success on retriving image from openai",
-        openaiImageResponse.data.data[0]?.url
-      );
+      // console.log({ openaiImageResponse });
 
-      const imageResponse = await ctx.prisma.articleImages.create({
+      console.log("Success on retriving image from openai");
+
+      const [openaiResponse, openaiImageResponse] = await Promise.all([
+        _openaiResponse,
+        _openaiImageResponse,
+      ]);
+
+      const _imageResponse = await ctx.prisma.articleImages.create({
         data: {
           articleId: input.id,
           image: openaiImageResponse.data.data[0]?.url || "OPENAI FAILED",
@@ -65,7 +73,7 @@ export const articleRouter = createTRPCRouter({
 
       console.log("success on writing image to database");
 
-      const response = await ctx.prisma.article.update({
+      const _response = await ctx.prisma.article.update({
         where: {
           id: input.id,
         },
@@ -74,6 +82,10 @@ export const articleRouter = createTRPCRouter({
           generated: 1,
         },
       });
+      const [response, imageResponse] = await Promise.all([
+        _response,
+        _imageResponse,
+      ]);
 
       return {
         response,
