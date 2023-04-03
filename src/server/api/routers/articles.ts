@@ -27,7 +27,9 @@ export const articleRouter = createTRPCRouter({
           id: input.id,
         },
       });
-      console.log("Success on retriving article from database");
+      console.log(
+        `Success on retriving article ${article.title}  from database`
+      );
 
       const openaiResponse = await openai.createCompletion({
         model: "text-davinci-003",
@@ -51,10 +53,7 @@ export const articleRouter = createTRPCRouter({
         n: 1,
         size: "512x512",
       });
-      console.log(
-        "Success on retriving image from openai",
-        openaiImageResponse.data.data[0]?.url
-      );
+      console.log("Success on retriving image from openai");
 
       const imageResponse = await ctx.prisma.articleImages.create({
         data: {
