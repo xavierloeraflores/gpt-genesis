@@ -22,8 +22,8 @@ const Generating: NextPage = () => {
     },
   });
   useEffect(() => {
-    if (progress < 90) {
-      const timer = setTimeout(() => setProgress(progress + 10), 1000);
+    if (progress < 93) {
+      const timer = setTimeout(() => setProgress(progress + 7), 900);
       return () => clearTimeout(timer);
     }
   }, [progress]);
