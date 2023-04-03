@@ -28,7 +28,9 @@ export const articleRouter = createTRPCRouter({
         },
       });
       console.log(
-        `Success on retriving article ${article.title}  from database`
+        `Success on retriving article ${
+          article?.title || "error"
+        }  from database`
       );
 
       const openaiResponse = await openai.createCompletion({
