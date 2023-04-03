@@ -123,6 +123,7 @@ export const articleRouter = createTRPCRouter({
         select: {
           id: true,
           title: true,
+          generated: true,
         },
         where: {
           title: {

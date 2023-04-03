@@ -13,7 +13,12 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ searchText }) => {
     <div>
       {searchResults ? (
         searchResults.map((result) => (
-          <SearchResult id={result.id} title={result.title} key={result.id} />
+          <SearchResult
+            id={result.id}
+            title={result.title}
+            key={result.id}
+            generated={result.generated}
+          />
         ))
       ) : (
         <></>
