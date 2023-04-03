@@ -4,6 +4,7 @@ import Head from "next/head";
 import { api } from "npm/utils/api";
 import { useRouter } from "next/router";
 import Header from "npm/components/header/header";
+import Footer from "npm/components/Footer/footer";
 
 const Wiki: NextPage = () => {
   const router = useRouter();
@@ -36,6 +37,7 @@ const Wiki: NextPage = () => {
           />
         )}
       </main>
+      <Footer />
     </>
   );
 };

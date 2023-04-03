@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import * as Progress from "@radix-ui/react-progress";
 import Header from "npm/components/header/header";
+import Footer from "npm/components/Footer/footer";
 
 const Generating: NextPage = () => {
   const [progress, setProgress] = useState(0);
@@ -59,6 +60,7 @@ const Generating: NextPage = () => {
           />
         </Progress.Root>
       </main>
+      <Footer />
     </>
   );
 };
