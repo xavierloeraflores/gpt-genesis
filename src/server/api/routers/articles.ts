@@ -55,6 +55,8 @@ export const articleRouter = createTRPCRouter({
         n: 1,
         size: "512x512",
       });
+      console.log({ openaiImageResponse });
+
       console.log("Success on retriving image from openai");
 
       const imageResponse = await ctx.prisma.articleImages.create({
