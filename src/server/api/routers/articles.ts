@@ -16,6 +16,39 @@ export const articleRouter = createTRPCRouter({
         response,
       };
     }),
+  generateArticleText: publicProcedure
+    .input(z.object({ id: z.string(), title: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      console.log(
+        `generating from openai for article ${input.title} [${input.id}]`
+      );
+      const openaiResponse = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `You are an AI that produces articles about different topics similar to Wikipedia articles. Generate an article about the following topic:${
+          input.title || "error"
+        }.`,
+        max_tokens: 1024,
+        temperature: 0.7,
+        top_p: 0.9,
+        n: 1,
+        stream: false,
+        logprobs: null,
+        stop: null,
+      });
+
+      const response = await ctx.prisma.article.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          content: openaiResponse.data?.choices[0]?.text || "OPENAI FAILED",
+          generated: 1,
+        },
+      });
+      return {
+        response,
+      };
+    }),
 
   generate: publicProcedure
     .input(z.object({ id: z.string() }))
