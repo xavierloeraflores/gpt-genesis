@@ -197,6 +197,11 @@ export const articleRouter = createTRPCRouter({
           id: true,
           title: true,
           generated: true,
+          images: {
+            select: {
+              image: true,
+            },
+          },
         },
         where: {
           title: {
