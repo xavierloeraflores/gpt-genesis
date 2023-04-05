@@ -50,6 +50,34 @@ export const articleRouter = createTRPCRouter({
       };
     }),
 
+  generateArticleImage: publicProcedure
+    .input(z.object({ id: z.string(), title: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      console.log(
+        `generating Image from openai for article ${input.title} [${input.id}]`
+      );
+      const openaiImageResponse = await openai.createImage({
+        prompt: `Create an image that that would be used in an article about the following topic:${
+          input.title || "error"
+        }.`,
+        n: 1,
+        size: "512x512",
+      });
+      console.log("Success on retriving image from openai");
+
+      const imageResponse = await ctx.prisma.articleImages.create({
+        data: {
+          articleId: input.id,
+          image: openaiImageResponse.data.data[0]?.url || "OPENAI FAILED",
+        },
+      });
+      console.log("success on writing image to database");
+
+      return {
+        response: imageResponse,
+      };
+    }),
+
   generate: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
