@@ -215,6 +215,20 @@ export const articleRouter = createTRPCRouter({
         searchResults,
       };
     }),
+  getArticleTitleById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ input, ctx }) => {
+      return ctx.prisma.article.findUnique({
+        where: {
+          id: input.id,
+        },
+        select: {
+          title: true,
+          id: true,
+        },
+      });
+    }),
+
   getArticleById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ input, ctx }) => {
