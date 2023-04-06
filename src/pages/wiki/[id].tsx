@@ -25,17 +25,17 @@ const Wiki: NextPage = () => {
       </Head>
       <Header />
       <main>
-        <h1>Wiki</h1>
-        <h2>{article.title}</h2>
-        <p>{article.content}</p>
+        <h1 className="w-full text-center text-4xl">{article.title}</h1>
         {article.images && article.images[0] && (
           <Image
             src={article.images[0].image}
             alt={article.title}
             width={300}
             height={300}
+            className="float-right"
           />
         )}
+        <p>{article.content}</p>
       </main>
       <Footer />
     </>
