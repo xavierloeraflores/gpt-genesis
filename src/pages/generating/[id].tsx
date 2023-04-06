@@ -9,8 +9,37 @@ import Footer from "npm/components/Footer/footer";
 
 const Generating: NextPage = () => {
   const [progress, setProgress] = useState(0);
+  const [imageComplete, setImageComplete] = useState(false);
+  const [textComplete, setTextComplete] = useState(false);
   const router = useRouter();
   const id: string = router.query.id as string;
+  const { data } = api.articles.getArticleTitleById.useQuery({ id: id });
+
+  const { mutate: mutateText } = api.articles.generateArticleText.useMutation({
+    onSuccess: (data) => {
+      console.log("Successful Text Generation!");
+      setProgress(progress + 30);
+      setTextComplete(true);
+    },
+    onError: (error) => {
+      console.log("Error!");
+      console.log({ error });
+    },
+  });
+
+  const { mutate: mutateImage } = api.articles.generateArticleImage.useMutation(
+    {
+      onSuccess: (data) => {
+        console.log("Successful Image Generation!");
+        setProgress(progress + 30);
+        setImageComplete(true);
+      },
+      onError: (error) => {
+        console.log("Error!");
+        console.log({ error });
+      },
+    }
+  );
 
   const { mutate } = api.articles.generate.useMutation({
     onSuccess: (data) => {
@@ -24,16 +53,46 @@ const Generating: NextPage = () => {
     },
   });
   useEffect(() => {
-    if (progress < 93) {
+    if (progress < 60) {
       const timer = setTimeout(() => setProgress(progress + 7), 900);
       return () => clearTimeout(timer);
     }
   }, [progress]);
 
   useEffect(() => {
-    console.log("Generating page useEffect");
-    mutate({ id: id });
-  }, []);
+    if (imageComplete && textComplete) {
+      setProgress(100);
+    }
+  }, [imageComplete, textComplete]);
+
+  // useEffect(() => {
+  //   console.log("Generating page useEffect");
+  //   mutate({ id: id });
+  // }, []);
+
+  useEffect(() => {
+    const generate = async (_id: string, _title: string) => {
+      await Promise.resolve(data);
+
+      console.log("Promise resolved");
+      if (data) {
+        mutateImage({ id: _id, title: _title });
+        mutateText({ id: _id, title: _title });
+      }
+      console.log("Generating page useEffect");
+    };
+
+    if (data && id) {
+      const title = data?.title || "Error";
+      void generate(id, title);
+    }
+  }, [data, id, mutateImage, mutateText]);
+
+  useEffect(() => {
+    if (progress >= 100) {
+      void router.push(`/wiki/${id}`);
+    }
+  }, [progress, id, router]);
 
   return (
     <>
