@@ -41,17 +41,6 @@ const Generating: NextPage = () => {
     }
   );
 
-  const { mutate } = api.articles.generate.useMutation({
-    onSuccess: (data) => {
-      console.log("Successful Page Generation!");
-      setProgress(100);
-      void router.push(`/wiki/${id}`);
-    },
-    onError: (error) => {
-      console.log("Error!");
-      console.log({ error });
-    },
-  });
   useEffect(() => {
     if (progress < 60) {
       const timer = setTimeout(() => setProgress(progress + 7), 900);
@@ -64,11 +53,6 @@ const Generating: NextPage = () => {
       setProgress(100);
     }
   }, [imageComplete, textComplete]);
-
-  // useEffect(() => {
-  //   console.log("Generating page useEffect");
-  //   mutate({ id: id });
-  // }, []);
 
   useEffect(() => {
     const generate = async (_id: string, _title: string) => {
