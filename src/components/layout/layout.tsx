@@ -7,10 +7,10 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <>
+    <div className="Page">
       <Header />
-      <main>{children}</main>
+      <main className="Main">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }
