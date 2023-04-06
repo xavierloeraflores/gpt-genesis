@@ -3,8 +3,6 @@ import Image from "next/image";
 import Head from "next/head";
 import { api } from "npm/utils/api";
 import { useRouter } from "next/router";
-import Header from "npm/components/header/header";
-import Footer from "npm/components/Footer/footer";
 
 const Wiki: NextPage = () => {
   const router = useRouter();
@@ -23,7 +21,6 @@ const Wiki: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main>
         <h1 className="w-full text-center text-4xl">{article.title}</h1>
         {article.images && article.images[0] && (
@@ -37,7 +34,6 @@ const Wiki: NextPage = () => {
         )}
         <p>{article.content}</p>
       </main>
-      <Footer />
     </>
   );
 };
