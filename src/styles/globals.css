@@ -26,7 +26,7 @@ body {
   grid-area: Header;
 }
 
-.Main {
+main {
   grid-area: Main;
 }
 
