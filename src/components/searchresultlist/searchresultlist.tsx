@@ -18,6 +18,7 @@ const SearchResultList: React.FC<SearchResultListProps> = ({ searchText }) => {
             title={result.title}
             key={result.id}
             generated={result.generated}
+            images={result.images}
           />
         ))
       ) : (
