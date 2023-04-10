@@ -10,6 +10,7 @@ body {
 }
 
 .Page {
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 5fr 1fr;
@@ -22,7 +23,7 @@ body {
     "Footer Footer Footer";
 }
 
-.Header {
+header {
   grid-area: Header;
 }
 
@@ -30,7 +31,7 @@ main {
   grid-area: Main;
 }
 
-.Footer {
+footer {
   grid-area: Footer;
 }
 

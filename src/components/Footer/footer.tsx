@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="Footer flex flex-col items-center justify-center bg-gray-100">
+    <footer className="flex flex-col items-center justify-center bg-gray-100">
       <Link href="/">
         <span className="font-bold">GPT Genesis</span>
       </Link>
