@@ -10,9 +10,10 @@ body {
 }
 
 .Page {
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
   grid-auto-columns: 1fr;
   gap: 2rem 2rem;
   grid-auto-flow: row;
@@ -22,7 +23,7 @@ body {
     "Footer Footer Footer";
 }
 
-.Header {
+header {
   grid-area: Header;
 }
 
@@ -30,6 +31,15 @@ main {
   grid-area: Main;
 }
 
-.Footer {
+footer {
   grid-area: Footer;
+}
+
+@media (max-width: 1200px) {
+  .Page {
+    grid-template-areas:
+      "Header Header Header"
+      "Main Main Main"
+      "Footer Footer Footer";
+  }
 }
