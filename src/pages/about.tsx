@@ -9,7 +9,7 @@ const About: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col items-center">
+      <main className="flex flex-col items-center bg-gray-100">
         <h1>About GPT Genesis</h1>
         <p>
           Welcome to GPT Genesis, your ultimate destination for generating
@@ -24,21 +24,21 @@ const About: NextPage = () => {
         </p>
 
         <p>
-          At the heart of our application is OpenAI's powerful GPT-3 language
-          model, which generates text that is virtually indistinguishable from
-          human writing. We leverage this technology to create articles that are
-          informative, engaging, and easy to read.
+          At the heart of our application is OpenAI&apos;s powerful GPT-3
+          language model, which generates text that is virtually
+          indistinguishable from human writing. We leverage this technology to
+          create articles that are informative, engaging, and easy to read.
         </p>
 
         <p>
-          But we don't stop there! In addition to generating text, our
+          But we don&apos;t stop there! In addition to generating text, our
           application can also produce relevant images to accompany your
           articles. With access to a vast database of images, we can ensure that
           your articles are not only informative but visually appealing as well.
         </p>
         <p>
           At GPT Genesis, we are committed to providing our users with the
-          highest level of service and quality. Whether you're a student,
+          highest level of service and quality. Whether you&apos;re a student,
           researcher, or just someone who wants to learn more about a particular
           topic, our application is the perfect tool for you. So why wait? Start
           exploring and generating articles today!
