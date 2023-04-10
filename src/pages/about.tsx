@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Hero from "npm/components/hero/hero";
 
 const About: NextPage = () => {
   return (
@@ -10,6 +11,7 @@ const About: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col items-center bg-gray-100">
+        <Hero />
         <h1>About GPT Genesis</h1>
         <p>
           Welcome to GPT Genesis, your ultimate destination for generating
