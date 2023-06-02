@@ -10,7 +10,7 @@ const About: NextPage = () => {
         <meta name="description" content="GPT Genesis - Wikis by ChatGPT" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col items-center bg-gray-100">
+      <main className="flex flex-col items-center">
         <Hero />
         <h1>About GPT Genesis</h1>
         <p>

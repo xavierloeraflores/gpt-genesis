@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
-    <header className="flex flex-col items-center justify-center bg-gray-100">
+    <header className="flex flex-col items-center justify-center">
       <Link href="/">
         <h1 className="text-6xl font-bold">GPT Genesis</h1>
       </Link>
